@@ -26,6 +26,7 @@ public class BeerLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println("534534583458736450983475094387504398570349857340958734095873409");
         loadBeerObjects();
     }
 

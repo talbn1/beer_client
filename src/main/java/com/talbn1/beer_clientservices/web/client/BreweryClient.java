@@ -13,8 +13,9 @@ import java.net.URI;
 import java.util.UUID;
 
 @Component
-@ConfigurationProperties(value = "talbn1.breweryclient",ignoreUnknownFields = false)
+@ConfigurationProperties(prefix = "talbn1.breweryclient",ignoreUnknownFields = false)
 public class BreweryClient {
+
     public final String BEER_PATH_V1 = "/api/v1/beer/";
     public final String CUSTOMER_PATH_V1 = "/api/v1/customer/";
     private String apihost;
