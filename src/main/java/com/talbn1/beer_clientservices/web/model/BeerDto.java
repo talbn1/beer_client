@@ -41,9 +41,8 @@ public class BeerDto {
     @NotNull
     private BeerStyleEnum beerStyle;
 
-    @Positive
     @NotNull
-    private Long upc;
+    private String upc;
 
     //JsonFormat, write the price as string when serialzation
     @JsonFormat(shape = JsonFormat.Shape.STRING)

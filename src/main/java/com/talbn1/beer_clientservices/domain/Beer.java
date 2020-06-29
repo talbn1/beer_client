@@ -1,14 +1,14 @@
 package com.talbn1.beer_clientservices.domain;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
-import javax.persistence.*;
-import javax.persistence.Entity;
-
-import org.hibernate.annotations.*;
 
 /**
  * @author talbn on 6/13/2020
@@ -41,7 +41,7 @@ public class Beer {
     private String beerStyle;
 
     @Column(unique = true)
-    private Long upc;
+    private String upc;
     private BigDecimal price;
 
     private Integer minOnHand;
