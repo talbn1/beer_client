@@ -14,19 +14,16 @@ import java.math.BigDecimal;
 
 /*Indicates that an annotated class is a "component".
  Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.*/
+
 @Component
 public class BeerLoader implements CommandLineRunner {
-
     private final BeerRepository beerRepository;
-
     public BeerLoader(BeerRepository beerRepository) {
         this.beerRepository = beerRepository;
     }
 
-
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("534534583458736450983475094387504398570349857340958734095873409");
         loadBeerObjects();
     }
 

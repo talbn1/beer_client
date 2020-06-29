@@ -1,5 +1,7 @@
 package com.talbn1.beer_clientservices.web.client;
 
+import com.talbn1.beer_clientservices.domain.Beer;
+import com.talbn1.beer_clientservices.repositories.BeerRepository;
 import com.talbn1.beer_clientservices.web.model.BeerDto;
 import com.talbn1.beer_clientservices.web.model.CustomerDto;
 import org.junit.jupiter.api.Test;
@@ -7,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -19,15 +23,16 @@ class BreweryClientTest {
 
 
     @Autowired
-    BreweryClient client;
+    BeerRepository client;
 
     @Test
     void getBeerById() {
-        BeerDto dto = client.getBeerById(UUID.randomUUID());
 
-        assertNotNull(dto);
+
+        assertNotNull(client.findById(UUID.randomUUID()));
 
     }
+/*
 
     @Test
     void testSaveNewBeer() {
@@ -90,5 +95,6 @@ class BreweryClientTest {
         client.deleteCustomer(UUID.randomUUID());
     }
 
+*/
 
 }
