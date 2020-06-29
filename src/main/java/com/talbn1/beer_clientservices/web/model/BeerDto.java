@@ -52,7 +52,5 @@ public class BeerDto {
     private BigDecimal price;
 
     @NotNull
-
     private Integer quantityOnHand;
-
 }
