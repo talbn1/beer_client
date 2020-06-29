@@ -1,5 +1,6 @@
 package com.talbn1.beer_clientservices.web.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,9 +27,11 @@ public class BeerDto {
     @Null
     private Integer version;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
     @Null
     private OffsetDateTime createDate;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
     @Null
     private OffsetDateTime lastModifiedTime;
 
@@ -42,6 +45,8 @@ public class BeerDto {
     @NotNull
     private Long upc;
 
+    //JsonFormat, write the price as string when serialzation
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @NotNull
     @Positive
     private BigDecimal price;
