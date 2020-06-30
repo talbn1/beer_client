@@ -3,7 +3,6 @@ package com.talbn1.beer_clientservices.bootstrap;
 import com.talbn1.beer_clientservices.domain.Beer;
 import com.talbn1.beer_clientservices.repositories.BeerRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
@@ -15,7 +14,7 @@ import java.math.BigDecimal;
 /*Indicates that an annotated class is a "component".
  Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.*/
 
-@Component
+
 public class BeerLoader implements CommandLineRunner {
 
     public static final String BEER_1_UPC = "0005975421675";
