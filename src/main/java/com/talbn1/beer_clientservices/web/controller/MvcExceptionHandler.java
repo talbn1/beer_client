@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
-import java.net.BindException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,15 +17,12 @@ import java.util.List;
 @ControllerAdvice
 public class MvcExceptionHandler {
 
-
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<List> validationErrorHandler(ConstraintViolationException e){
-        List<String> errors = new ArrayList<>(e.getConstraintViolations().size());
+    public ResponseEntity<List> validationErrorHandler(ConstraintViolationException ex) {
+        List<String> errorsList = new ArrayList<>(ex.getConstraintViolations().size());
 
-        e.getConstraintViolations().forEach(constraintViolation -> {
-            errors.add(constraintViolation.getPropertyPath() + " : " + constraintViolation.getMessage());
-        });
+        ex.getConstraintViolations().forEach(error -> errorsList.add(error.toString()));
 
-        return new ResponseEntity<List>(errors, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorsList, HttpStatus.BAD_REQUEST);
     }
 }

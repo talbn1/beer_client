@@ -5,5 +5,5 @@ package com.talbn1.beer_clientservices.web.model;
  **/
 
 public enum BeerStyleEnum {
-    Ale, Lager, ALE
+    Ale, Lager, ALE, IPA, PALE_ALE, PORTER
 }

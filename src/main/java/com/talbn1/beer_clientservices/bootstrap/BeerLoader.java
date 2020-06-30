@@ -2,7 +2,11 @@ package com.talbn1.beer_clientservices.bootstrap;
 
 import com.talbn1.beer_clientservices.domain.Beer;
 import com.talbn1.beer_clientservices.repositories.BeerRepository;
+import com.talbn1.beer_clientservices.web.model.BeerStyleEnum;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
@@ -13,53 +17,55 @@ import java.math.BigDecimal;
 
 /*Indicates that an annotated class is a "component".
  Such classes are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.*/
-
-
+@Slf4j
+@RequiredArgsConstructor
+@Component
 public class BeerLoader implements CommandLineRunner {
 
-    public static final String BEER_1_UPC = "0005975421675";
-    public static final String BEER_2_UPC = "0123658735412";
-    public static final String BEER_3_UPC = "0058425471523";
-
+    public static final String BEER_1_UPC = "0631234200036";
+    public static final String BEER_2_UPC = "0631234300019";
+    public static final String BEER_3_UPC = "0083783375213";
 
     private final BeerRepository beerRepository;
 
-    public BeerLoader(BeerRepository beerRepository) {
-        this.beerRepository = beerRepository;
-    }
-
     @Override
     public void run(String... args) throws Exception {
-        loadBeerObjects();
+
+        if (beerRepository.count() == 0) {
+            loadBeerObjects();
+        }
     }
 
-    private void loadBeerObjects(){
-        if(beerRepository.count() == 0){
-            beerRepository.save(Beer.builder().
-                    beerName("Goldstar").
-                    beerStyle("IPA").
-                    quantityToBrew(200).
-                    upc(BEER_1_UPC).
-                    minOnHand(40).
-                    price(new BigDecimal("12.45")).
-                    build());
-            beerRepository.save(Beer.builder().
-                    beerName("Hineken").
-                    beerStyle("light").
-                    quantityToBrew(310).
-                    upc(BEER_2_UPC).
-                    minOnHand(20).
-                    price(new BigDecimal("9.99")).
-                    build());
-            beerRepository.save(Beer.builder().
-                    beerName("Guinness").
-                    beerStyle("Lager").
-                    quantityToBrew(239).
-                    upc(BEER_3_UPC).
-                    minOnHand(40).
-                    price(new BigDecimal("39.39")).
-                    build());
-        }
-        System.out.println("Loaded Beers = " + beerRepository.count());
+    private void loadBeerObjects() {
+        Beer b1 = Beer.builder()
+                .beerName("Mango Bobs")
+                .beerStyle(BeerStyleEnum.IPA.name())
+                .minOnHand(12)
+                .quantityToBrew(200)
+                .price(new BigDecimal("12.95"))
+                .upc(BEER_1_UPC)
+                .build();
+
+        Beer b2 = Beer.builder()
+                .beerName("Galaxy Cat")
+                .beerStyle(BeerStyleEnum.PALE_ALE.name())
+                .minOnHand(12)
+                .quantityToBrew(200)
+                .price(new BigDecimal("12.95"))
+                .upc(BEER_2_UPC)
+                .build();
+
+        Beer b3 = Beer.builder()
+                .beerName("Pinball Porter")
+                .beerStyle(BeerStyleEnum.PALE_ALE.name())
+                .minOnHand(12)
+                .quantityToBrew(200)
+                .price(new BigDecimal("12.95"))
+                .upc(BEER_3_UPC)
+                .build();
+
+        beerRepository.save(b1);
+        beerRepository.save(b2);
+        beerRepository.save(b3);
     }
 }

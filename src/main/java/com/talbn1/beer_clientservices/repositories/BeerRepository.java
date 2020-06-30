@@ -1,12 +1,21 @@
 package com.talbn1.beer_clientservices.repositories;
 
 import com.talbn1.beer_clientservices.domain.Beer;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import com.talbn1.beer_clientservices.web.model.BeerStyleEnum;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface BeerRepository extends PagingAndSortingRepository<Beer, UUID> {
-    Beer findById(String id);
+public interface BeerRepository extends JpaRepository<Beer, UUID> {
+    Page<Beer> findAllByBeerName(String beerName, Pageable pageable);
+
+    Page<Beer> findAllByBeerStyle(BeerStyleEnum beerStyle, Pageable pageable);
+
+    Page<Beer> findAllByBeerNameAndBeerStyle(String beerName, BeerStyleEnum beerStyle, Pageable pageable);
+
+    Beer findByUpc(String upc);
 }
 
 
